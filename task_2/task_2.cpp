@@ -1,20 +1,64 @@
-﻿// task_2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿/*
+2. Дан двумерный массив размерностью 5х5, заполненный
+случайными числами из диапазона от -10 до 40. Определить
+сумму элементов для тех столбцов, которые не содержат ни
+одного отрицательного элемента.
+*/
 
 #include <iostream>
+#include <iomanip>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::setw;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	setlocale(LC_ALL, ""); // Работает только с потоком вывода.
+	srand(time(0));
+	/*
+		Функция srand() используется для установки начала последовательности,
+	генерируемой функ­цией rand() (функция rand() возвращает псевдослучайные числа).
+		Функция srand() позволяет запускать программу несколько раз	с различными
+	последователь­ностями псевдослучайных чисел.
+	*/
+
+	int min{ -10 }; // Минимальное значение диапазона.
+	int max{ 40 }; // Максимальное значение диапазона.
+	const int row{ 5 }; // Количество строк (рядов).
+	const int col{ 5 }; // Количество колонок (столбцов).
+
+	int arr[row][col]{ 0 }; // Объявляем массив.
+
+	for (int i = 0; i < row; i++) // Заполняем массив псевдослучайными числами, обрабатываем и выводим.
+	{
+		for (int j = 0; j < col; j++)
+		{
+			arr[i][j] = rand() % (max - min + 1) + min;
+			cout << setw(4) << arr[i][j];  // setw(4) - Задает ширину поля отображения для следующего элемента в потоке.
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+	for (int i = 0; i < row; i++) // Подсчитываем сумму елементов столбцов, у которых нету отрицательных елементов.
+	{
+		int sum{ 0 };
+		int count{ 0 };
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[j][i] >= 0)
+			{
+				sum += arr[j][i];
+				count++;
+			}
+		}
+		if (count == row)
+			cout << setw(4) << sum; // Выводим сумму под столбцом
+		else
+			cout << setw(4) << ' '; // Иначе выводим пробел.
+	}
+	cout << endl;
+
+	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

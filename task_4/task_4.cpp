@@ -1,20 +1,65 @@
-﻿// task_4.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿/*
+4. Дан двумерный массив размерностью 5х5, заполненный
+случайными числами из диапазона от 0 до 100. Поменять местами
+элементы массива, расположенные симметрично относительно
+главной диагонали.
+*/
+/*
+НЕ РАБОТАЕТ
+*/
 
 #include <iostream>
+#include <iomanip>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::setw;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	setlocale(LC_ALL, ""); // Работает только с потоком вывода.
+	srand(time(0));
+	/*
+		Функция srand() используется для установки начала последовательности,
+	генерируемой функ­цией rand() (функция rand() возвращает псевдослучайные числа).
+		Функция srand() позволяет запускать программу несколько раз	с различными
+	последователь­ностями псевдослучайных чисел.
+	*/
+
+	int min{ 0 }; // Минимальное значение диапазона.
+	int max{ 20 }; // Максимальное значение диапазона.
+	const int row{ 5 }; // Количество строк (рядов).
+	const int col{ 5 }; // Количество колонок (столбцов).
+
+	int arr[row][col]
+	{
+		{12, 16, 19, 13, 13},
+		{ 2, 9, 20, 15, 20},
+		{ 6, 5, 6, 1, 5 },
+		{ 9, 16, 18, 20, 16 },
+		{ 20, 3, 13, 13, 14 }
+	}; // Инициализируем массив.
+
+	for (int i = 0; i < row; i++) // Заполняем массив псевдослучайными числами и выводим.
+	{
+		for (int j = 0; j < col; j++)
+		{
+			arr[i][j] = rand() % (max - min + 1) + min;
+			cout << setw(4) << arr[i][j];
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+
+
+	for (int i = 0; i < row; i++) // Выводим массив.
+	{
+		for (int j = 0; j < col; j++)
+			cout << setw(4) << arr[i][j];
+		cout << endl;
+	}
+	cout << endl;
+
+	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

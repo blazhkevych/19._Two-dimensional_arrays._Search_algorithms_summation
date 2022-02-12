@@ -5,9 +5,11 @@
 */
 
 #include <iostream>
+#include <iomanip>
 using std::cout;
 using std::cin;
 using std::endl;
+using std::setw;
 
 int main()
 {
@@ -20,24 +22,23 @@ int main()
 	последователь­ностями псевдослучайных чисел.
 	*/
 
-	int min{ -20 }; // Минимальное значение диапазона.
+	int min{ 0 }; // Минимальное значение диапазона.
 	int max{ 20 }; // Максимальное значение диапазона.
-	const int arr_Size{ 10 }; // Размер массива.
+	const int row{ 5 }; // Количество строк (рядов).
+	const int col{ 5 }; // Количество колонок (столбцов).
 
-	int arr[arr_Size]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }; // Создаем массив.
+	int arr[row][col]{ 0 }; // Объявляем массив.
 
-	for (int i = 0; i < arr_Size; i++) // Заполняем 1 массив и выводим.
+	for (int i = 0; i < row; i++) // Заполняем массив псевдослучайными числами, обрабатываем и выводим.
 	{
-		arr[i] = rand() % (max - min + 1) + min;
-		cout << arr[i] << "\t";
-	}
-	cout << endl;
-
-
-
-	for (int i = 0; i < arr_Size; i++) // Выводим 1 массив.
-	{
-		cout << arr[i] << "\t";
+		int sum = 0;
+		for (int j = 0; j < col; j++)
+		{
+			arr[i][j] = rand() % (max - min + 1) + min;
+			cout << setw(4) << arr[i][j]; // setw(4) - Задает ширину поля отображения для следующего элемента в потоке.
+			sum += arr[i][j];
+		}
+		cout << "   Сумма этой строки: " << sum << endl;
 	}
 	cout << endl;
 
