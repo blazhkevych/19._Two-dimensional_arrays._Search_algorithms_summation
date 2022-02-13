@@ -9,7 +9,7 @@
 using std::cout;
 using std::cin;
 using std::endl;
-using std::setw;
+using std::setw; // setw(4) - Задает ширину поля отображения для следующего элемента в потоке.
 
 int main()
 {
